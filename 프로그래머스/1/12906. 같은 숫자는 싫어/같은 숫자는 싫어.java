@@ -3,23 +3,24 @@ import java.util.*;
 public class Solution {
     public int[] solution(int []arr) {
         int[] answer = {};
-        Stack<Integer> myStack = new Stack();
+        Stack myStack = new Stack();
         myStack.push(arr[0]);
+        
         for (int i = 1; i < arr.length; i++) {
-            
-            Integer temp = (int)myStack.peek();
-            if (temp == arr[i]) {
+            if ((int)myStack.peek() == arr[i]) {
                 continue;
             } else {
-                myStack.push(arr[i]);    
+                myStack.push(arr[i]);
             }
         }
+        
+        // stack to int arr
         answer = new int[myStack.size()];
-        for (int i = answer.length - 1; i >= 0; i--) {
-            answer[i] = myStack.pop();
+        
+        for (int i = answer.length-1; i >= 0; i--) {
+            answer[i] = (int)myStack.pop();
         }
-        // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
-
+        
         return answer;
     }
 }
