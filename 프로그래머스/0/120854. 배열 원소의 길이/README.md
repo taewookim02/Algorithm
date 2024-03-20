@@ -1,10 +1,10 @@
 # [level 0] 배열 원소의 길이 - 120854 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120854?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120854) 
 
 ### 성능 요약
 
-메모리: 70.2 MB, 시간: 0.01 ms
+메모리: 77.7 MB, 시간: 0.02 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 2월 5일 9:27:51
+2024년 03월 20일 14:30:43
 
 ### 문제 설명
 
