@@ -1,0 +1,18 @@
+-- 코드를 입력하세요
+
+# USED_GOODS_BOARD, USED_GOODS_USER 테이블에서
+# 완료된 중고 거래의 
+# 총금액이 70만 원 이상인 사람의
+# 회원 ID, 닉네임, 총거래금액을 조회
+# 결과는 총거래금액을 기준으로 오름차순 정렬
+
+
+
+ SELECT GU.USER_ID, GU.NICKNAME, SUM(GB.PRICE) TOTAL_SALES
+ FROM USED_GOODS_BOARD GB
+ JOIN USED_GOODS_USER GU 
+     ON (GB.WRITER_ID = GU.USER_ID)
+     AND GB.STATUS = 'DONE'
+     GROUP BY GB.WRITER_ID
+ HAVING SUM(GB.PRICE) >= 700000
+ ORDER BY TOTAL_SALES;
