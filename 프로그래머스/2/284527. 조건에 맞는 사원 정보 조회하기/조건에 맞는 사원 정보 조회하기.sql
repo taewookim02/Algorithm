@@ -1,0 +1,18 @@
+-- 코드를 작성해주세요
+
+# 2022년도의 평가 점수는 상,하반기 점수의 합
+
+# HR_DEPARTMENT, HR_EMPLOYEES, HR_GRADE 테이블에서
+# 2022년도 한해
+# 평가 점수가 가장 높은 
+# 사원들의 정보를 조회
+# 평가점수 (SCORE), 사번, 성명, 직책, 이메일을 조회
+
+SELECT SUM(HG.SCORE) SCORE, HE.EMP_NO, HE.EMP_NAME, HE.POSITION, HE.EMAIL
+FROM HR_GRADE HG
+JOIN HR_EMPLOYEES HE ON HG.EMP_NO = HE.EMP_NO
+WHERE HG.YEAR = 2022
+GROUP BY HE.EMP_NO
+ORDER BY SUM(HG.SCORE) DESC
+LIMIT 1
+;
