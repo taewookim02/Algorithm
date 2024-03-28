@@ -3,32 +3,37 @@ import java.util.Queue;
 
 class Solution {
     public int solution(int[] priorities, int location) {
+        int answer = 0;
         Queue<Integer> queue = new LinkedList<>();
+        
         for (int i = 0; i < priorities.length; i++) {
             queue.add(i);
         }
-        int answer = 0;
         
-        while (true) {
-            int currIndex = queue.poll();
+        while (!queue.isEmpty()) {
+            int currIdx = queue.poll();
             boolean isMaxPrio = true;
             
+            // chek if curridx is max
             for (int idx : queue) {
-                if (priorities[idx] > priorities[currIndex]) {
+                if (priorities[currIdx] < priorities[idx]) {
                     isMaxPrio = false;
-                    break;
+                    break; // cause no need to check
                 }
             }
             
             if (isMaxPrio) {
                 answer++;
-                if (currIndex == location) {
+                if (currIdx == location) {
                     return answer;
                 }
             } else {
-                queue.add(currIndex);
+                queue.add(currIdx);
             }
+            
+            
         }
         
+        return answer;
     }
 }
