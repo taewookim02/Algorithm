@@ -8,7 +8,7 @@ SELECT
     SUM(
         CASE
             WHEN operation = 'Buy' THEN -price
-            WHEN operation = 'Sell' THEN price
+            ELSE price
         END
     ) capital_gain_loss
 FROM Stocks
