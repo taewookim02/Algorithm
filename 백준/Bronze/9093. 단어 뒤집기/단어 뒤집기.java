@@ -1,32 +1,60 @@
 import java.util.Scanner;
-import java.util.Stack;
+
+class CharStack {
+	private int top;
+	private int size;
+	private char[] stack;
+
+	public CharStack(int size) {
+		this.size = size;
+		top = -1;
+		stack = new char[size];
+	}
+
+	public void push(char item) {
+		stack[++top] = item;
+	}
+
+	public boolean isEmpty() {
+		return top == -1;
+	}
+
+	public char pop() {
+		if (isEmpty()) {
+			return '\0';
+		} else {
+			char item = stack[top];
+			stack[top--] = '\0';
+			return item;
+		}
+	}
+}
+
 
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int T = Integer.parseInt(sc.nextLine());
-		
-		for (int i = 0; i < T; i++) {
+		int n = Integer.parseInt(sc.nextLine());
+
+		for (int i = 0; i < n; i++) {
 			String line = sc.nextLine();
+			CharStack stack = new CharStack(line.length());
 			StringBuilder sb = new StringBuilder();
-			Stack<Character> st = new Stack<>();
-			
-			for (int j = 0; j < line.length(); j++) {
-				if (line.charAt(j) != ' ') {					
-					st.push(line.charAt(j));
+			for (char ch : line.toCharArray()) {
+				if (ch != ' ') {
+					stack.push(ch);
 				} else {
-					while (!st.isEmpty()) {
-						sb.append(st.pop());
+					while (!stack.isEmpty()) {
+						sb.append(stack.pop());
 					}
 					sb.append(' ');
 				}
 			}
-			// remainders
-			while (!st.isEmpty()) {
-				sb.append(st.pop());
+            while(!stack.isEmpty()) {
+				sb.append(stack.pop());
 			}
 			System.out.println(sb.toString());
 		}
+		sc.close();
 	}
-	
 }
