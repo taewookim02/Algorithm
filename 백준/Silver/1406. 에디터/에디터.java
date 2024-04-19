@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Stack;
 
 public class Main {
@@ -8,7 +10,8 @@ public class Main {
 		Stack<Character> L = new Stack<>();
 		Stack<Character> R = new Stack<>();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
 		String line = br.readLine();
 		for (char ch : line.toCharArray()) {
 			L.push(ch);
@@ -36,17 +39,16 @@ public class Main {
 
 		}
 
-		while (!R.isEmpty()) {
-			L.push(R.pop());
-		}
-
-		StringBuilder sb = new StringBuilder();
 		while (!L.isEmpty()) {
-			sb.append(L.pop());
+			R.push(L.pop());
 		}
 
-		System.out.println(sb.reverse().toString());
-
+		while(!R.isEmpty()) {
+			bw.write(R.pop());
+		}
+		bw.flush();
+		bw.close();
+		br.close();
 	}
 
 }
