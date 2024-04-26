@@ -1,38 +1,37 @@
 import java.util.Scanner;
 
 public class Main {
-	
+
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		
 		int M = sc.nextInt(), N = sc.nextInt();
 		
-		primeList(M, N);
+		sieve(M, N);
 	}
 	
-	static void primeList(int M, int N) {
-		int[] prime = new int[N + 1];
+	static void sieve(int M, int N) {
+		boolean[] check = new boolean[N + 1];
+		
+		check[0] = check[1] = true;
+		
 		for (int i = 2; i <= N; i++) {
-			prime[i] = i;
-		}
-
-		for (int i = 2; i<= N; i++) {
-			if (prime[i] == 0) {
-				continue;
-			}
-			
-			for (int j = i + i; j <= N; j+= i) {
-				prime[j] = 0;
+			if (check[i] == false) {
+				for (int j = i + i; j <= N; j += i ) {
+					check[j] = true;
+				}
 			}
 		}
 		
 		StringBuilder sb = new StringBuilder();
-		for (int i = M; i < prime.length; i++) {
-			if (prime[i] != 0) {
-				sb.append(prime[i] + "\n");
+		for (int i = 2; i <= N; i++) {
+			if (!check[i] && i >= M) {
+				sb.append(i + "\n");
 			}
 		}
 		
 		System.out.println(sb.toString().trim());
 	}
+	
 }
