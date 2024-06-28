@@ -14,22 +14,22 @@ class Solution {
             if (operation.equals("+")) {
                 // plus
                 int result = first + second;
-                if (result == last) {
-                    answer[i] = "O";
-                } else {
-                    answer[i] = "X";
-                }
+                handleResult(result, last, answer, i);
             } else if (operation.equals("-")) {
                 // minus
                 int result = first - second;
-                if (result == last) {
-                    answer[i] = "O";
-                } else {
-                    answer[i] = "X";
-                }
+                handleResult(result, last, answer, i);
             }
         }
         
         return answer;
+    }
+    
+    public void handleResult(int result, int last, String[] arr, int i) {
+        if (result == last) {
+            arr[i] = "O";
+        } else {
+            arr[i] = "X";
+        }
     }
 }
